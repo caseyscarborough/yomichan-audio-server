@@ -1,13 +1,16 @@
+import os
 from typing import Final
 
-HOSTNAME: Final = "localhost"
-PORT: Final = 5050
-DB_FILE_NAME: Final = "user_files/entries.db"
-ANDROID_DB_FILE_NAME: Final = "user_files/android.db"
-DB_VERSION_FILE_NAME: Final = "user_files/entries_version.txt"
-JMDICT_FORMS_JSON_FILE_NAME: Final = "user_files/jmdict_forms.json"
-DEFAULT_CONFIG_FILE_NAME: Final = "default_config.json"
-CONFIG_FILE_NAME: Final = "user_files/config.json"
+HOSTNAME: Final = os.environ.get('HOSTNAME', '0.0.0.0')
+PORT: Final = os.environ.get('PORT', 5050)
+DATA_DIRECTORY: Final = os.environ.get('DATA_DIRECTORY', '/data')
+CONFIG_DIRECTORY: Final = os.environ.get('CONFIG_DIRECTORY', DATA_DIRECTORY)
+DB_FILE_NAME: Final = f"{DATA_DIRECTORY}/entries.db"
+ANDROID_DB_FILE_NAME: Final = f"{DATA_DIRECTORY}/android.db"
+DB_VERSION_FILE_NAME: Final = f"{DATA_DIRECTORY}/entries_version.txt"
+JMDICT_FORMS_JSON_FILE_NAME: Final = f"{DATA_DIRECTORY}/jmdict_forms.json"
+DEFAULT_CONFIG_FILE_NAME: Final = "config.default.json"
+CONFIG_FILE_NAME: Final = f"{CONFIG_DIRECTORY}/config.json"
 LATEST_VERSION_FILE_NAME: Final = "version.txt"
 
 ROWID: Final = 0
