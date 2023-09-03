@@ -1,6 +1,8 @@
 # <img src="https://i.imgur.com/1QgctyK.png" height="24" alt="Yomichan Logo"> Yomichan Audio Server
 
 [![](https://github.com/caseyscarborough/yomichan-audio-server/actions/workflows/release.yaml/badge.svg)](https://github.com/caseyscarborough/yomichan-audio-server/actions/workflows/release.yaml)
+[![](https://img.shields.io/badge/License-MIT-orange)](https://github.com/caseyscarborough/yomichan-audio-server/blob/master/LICENSE)
+[![](https://img.shields.io/badge/Dockerhub-1.0.0-blue)](https://hub.docker.com/r/caseyscarborough/yomichan-audio-server)
 
 This is a self-hosted audio server for Yomichan to fetch audio files from,
 using a database containing over 250,000 unique expressions.
@@ -510,7 +512,3 @@ The following is the list of credits and acknowledgements from the original proj
 * **[@jamesnicolas](https://github.com/jamesnicolas)**: Creator of [Yomichan Forvo Server for Anki](https://github.com/jamesnicolas/yomichan-forvo-server). The original code was heavily based off of this project.
 * **[@KamWithK](https://github.com/KamWithK)**: Creator of [Ankiconnect Android](https://github.com/KamWithK/AnkiconnectAndroid). This allows the local audio server to work on Android. Also gave advice for improving the database.
 * **[@DillonWall](https://github.com/DillonWall)**: Creator of [Generate Batch Audio](https://github.com/DillonWall/generate-batch-audio-anki-addon). This allows you to backfill existing cards with the local audio server, or anything else.
-
-## License
-
-[MIT](https://github.com/caseyscarborough/yomichan-audio-server/blob/master/LICENSE)
