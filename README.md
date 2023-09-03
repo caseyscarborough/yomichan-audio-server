@@ -589,6 +589,10 @@ You can add additional sources by using your own `config.json` file. For example
 
     </details>
 
+## Regenerating the Database
+
+You can regenerate the database from scratch by making a `GET` request to the `/regenerate` path. If the database is regenerated properly you will get a success message returned from the API after it is complete.
+
 ## Troubleshooting
 
 These are additional instructions and tips if something doesn't work as expected.
@@ -597,6 +601,7 @@ These are additional instructions and tips if something doesn't work as expected
   You can do this by visiting [http://localhost:5050](http://localhost:5050).
   If it says "Local Audio Server (version)", then the server is up and running!
 * Ensure you haven't copied any files from the torrent outside of `user_files`.
+* Try [regenerating the database](#regenerating-the-database).
 * If all else fails, remove the `entries*` files from your `DATA_DIRECTORY` and restart the server.
 
 ## Credits & Acknowledgements

@@ -5,7 +5,6 @@ import json
 import sqlite3
 import threading
 
-from http import HTTPStatus
 from urllib.parse import unquote
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
@@ -19,9 +18,10 @@ from .util import (
 )
 from .consts import *
 from .config import ALL_SOURCES
-from .db_utils import execute_query
-
-
+from .db_utils import (
+    execute_query,
+    init_db
+)
 
 class LocalAudioHandler(http.server.SimpleHTTPRequestHandler):
 
@@ -128,17 +128,28 @@ class LocalAudioHandler(http.server.SimpleHTTPRequestHandler):
 
         return qcomps
 
+    def write_response(self, status, payload, content_type="text/plain"):
+        self.send_response(status)
+        self.send_header("Content-type", f"{content_type}; charset=UTF-8")
+        self.send_header("Content-Length", str(len(payload)))
+        self.end_headers()
+        try:
+            self.wfile.write(payload)
+        except BrokenPipeError:
+            self.log_error("BrokenPipe when sending reply")
+        return
+
     def send_version(self):
         latest_version_file = get_version_file_path()
         with open(latest_version_file) as f:
             ver = f.read().strip()
         payload = f"Local Audio Server v{ver}".encode("utf-8")
+        self.write_response(200, payload)
 
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain; charset=UTF-8")
-        self.send_header("Content-Length", str(len(payload)))
-        self.end_headers()
-        self.wfile.write(payload)
+    def regenerate_database(self):
+        init_db()
+        payload = "Regenerated database successfully.".encode("utf-8")
+        self.write_response(200, payload)
 
     def do_GET(self):
         print("GET:", self.path)
@@ -152,9 +163,14 @@ class LocalAudioHandler(http.server.SimpleHTTPRequestHandler):
             self.send_version()
             return
 
+        # regenerates the database
+        if full_path.strip() == "/regenerate":
+            self.regenerate_database()
+            return
+
         if full_path.strip() == "/favicon.ico":
             # skip entirely
-            self.send_response(400)
+            self.send_response(404)
             return
 
         path_parts = full_path.split("/", 2)
@@ -162,7 +178,6 @@ class LocalAudioHandler(http.server.SimpleHTTPRequestHandler):
             audio_source = ALL_SOURCES[source_id]
             file_path = path_parts[2]
             self.get_audio(audio_source.get_media_dir_path(), file_path)
-            # self._get_audio_android(audio_source.data.id, file_path)
             return
 
         qcomps = self.parse_query_components()
@@ -196,16 +211,7 @@ class LocalAudioHandler(http.server.SimpleHTTPRequestHandler):
 
         # Writing the JSON contents with UTF-8
         payload = bytes(json.dumps(resp), "utf8")
-        self.send_response(HTTPStatus.OK)
-        self.send_header("Content-type", "application/json")
-        self.send_header("Content-length", str(len(payload)))
-        self.end_headers()
-        try:
-            self.wfile.write(payload)
-        except BrokenPipeError:
-            self.log_error("BrokenPipe when sending reply")
-        return
-
+        self.write_response(200, payload, "application/json")
 
 def run_server():
     # Else, run it in a separate thread so it doesn't block
