@@ -1,3 +1,16 @@
+# Changelog
+
+# 1.0.0
+
+- Initial release of the server.
+- Removed Anki-related files.
+- Changed configuration to use environment.
+- Added Dockerfile.
+
+# Project Forked
+
+The changelog below is for the original project ([themoeway/local-audio-yomichan](https://github.com/themoeway/local-audio-yomichan)):
+
 ## v1.7.0
 - Reading parameter is now optional (within the URL)
 - Made it possible to visit http://localhost:5050 for debugging purposes
