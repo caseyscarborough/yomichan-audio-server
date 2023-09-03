@@ -5,17 +5,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Final
 
-from urllib.parse import urlunparse
-
 from ..util import (
     get_program_root_path,
     URLComponents,
 )
-from ..consts import (
-    HOSTNAME,
-    PORT,
-)
-
+from ..consts import EXTERNAL_URL
 
 @dataclass
 class AudioSourceData:
@@ -59,15 +53,7 @@ class AudioSource(ABC):
         """
         constructs url to get the audio file (as opposed to the url to get audio sources)
         """
-        parts = URLComponents(
-            scheme="http",
-            netloc=f"{HOSTNAME}:{PORT}",
-            path=f"{self.data.id}/{file_path}",
-            params="",
-            query="",
-            fragment="",
-        )
-        return urlunparse(parts)
+        return f"{EXTERNAL_URL}/{self.data.id}/{file_path}"
 
     def get_media_dir_path(self) -> Path:
         return get_program_root_path().joinpath(self.data.media_dir)

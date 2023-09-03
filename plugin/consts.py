@@ -1,8 +1,9 @@
 import os
 from typing import Final
 
-HOSTNAME: Final = os.environ.get('HOSTNAME', '0.0.0.0')
-PORT: Final = os.environ.get('PORT', 5050)
+BIND_ADDRESS: Final = os.environ.get('BIND_ADDRESS', '0.0.0.0')
+BIND_PORT: Final = int(os.environ.get('BIND_PORT', '5050'))
+EXTERNAL_URL: Final = os.environ.get('EXTERNAL_URL', f"http://{BIND_ADDRESS}:{BIND_PORT}")
 DATA_DIRECTORY: Final = os.environ.get('DATA_DIRECTORY', '/data')
 CONFIG_DIRECTORY: Final = os.environ.get('CONFIG_DIRECTORY', DATA_DIRECTORY)
 DB_FILE_NAME: Final = f"{DATA_DIRECTORY}/entries.db"
