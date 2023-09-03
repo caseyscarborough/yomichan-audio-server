@@ -199,6 +199,12 @@ docker run \
   caseyscarborough/yomichan-audio-server:latest
 ```
 
+You can use any of the following image tags:
+
+- `latest` - The latest stable release
+- `master` - The master branch
+- `1.0.0` - Specific version (replace with the version you want to use)
+
 ### Run the Container in Kubernetes
 
 You can run this in Kubernetes using a setup similar to the following. In this setup I am hosting the audio files on an NFS share and mounting it into the `/user_files` directory in the container. The database files are in a persistent volume mounted at `/data`.
