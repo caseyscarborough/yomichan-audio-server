@@ -1,6 +1,6 @@
 # <img src="https://i.imgur.com/1QgctyK.png" height="24" alt="Yomichan Logo"> Yomichan Audio Server
 
-[![](https://github.com/caseyscarborough/yomichan-audio-server/actions/workflows/release.yml/badge.svg)](https://github.com/caseyscarborough/yomichan-audio-server/actions/workflows/release.yml)
+[![](https://github.com/caseyscarborough/yomichan-audio-server/actions/workflows/release.yaml/badge.svg)](https://github.com/caseyscarborough/yomichan-audio-server/actions/workflows/release.yaml)
 
 This is a self-hosted audio server for Yomichan to fetch audio files from,
 using a database containing over 250,000 unique expressions.
