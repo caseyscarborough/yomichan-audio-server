@@ -13,7 +13,7 @@ in your own network), and increase the quality and coverage of word audio.
 This project was forked from [themoeway/local-audio-yomichan](https://github.com/themoeway/local-audio-yomichan) and has been modified by me to remove the Anki plugin-related files and slightly refactored to run standalone in Docker. All the credits go to the original creator [**@Aquafina-water-bottle**](https://www.github.com/Aquafina-water-bottle) and the others who worked on [local-audio-yomichan](https://github.com/themoeway/local-audio-yomichan).
 
 The purpose of this project is to host the audio server externally
-(outside of localhost). If you don't to host this on your own server,
+(outside of localhost). If you don't want to host this on your own server,
 NAS, Kubernetes cluster, etc. then you should stick with the original project.
 
 ## Reasons for and against this setup
@@ -284,8 +284,6 @@ Then ensure that your `config.json` uses the proper paths (replacing
 ```
 </details>
 
-I will try to setup an `install.yaml` file or a Helm chart eventually to simplify this.
-
 ### Build and Run from Source
 
 This has only been tested on Linux and macOS but it should likely work on Windows too:
@@ -518,6 +516,8 @@ You can run this in Kubernetes using a setup similar to the following. In this s
   ```
   
   </details>
+
+I will try to setup an `install.yaml` file or a Helm chart eventually to simplify this.
 
 ## Adding Additional Sources
 
